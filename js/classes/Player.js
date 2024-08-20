@@ -35,18 +35,20 @@ class Player {
 
     // Método para atualizar a posição e a física do player
     update() {
+        // Atualiza a posição horizontal do player com base na velocidade
+        this.position.x += this.velocity.x;
         // Atualiza a posição vertical do player com base na velocidade
         this.position.y += this.velocity.y;
+       // Atualiza a parte inferior para refletir a nova posição
+       this.sides.bottom = this.position.y + this.height;
 
         // Verifica se o player está acima da borda inferior do canvas
         if (this.sides.bottom + this.velocity.y < canvas.height) {
             // Aplica a gravidade para simular a queda
             this.velocity.y += this.gravity;
-            // Atualiza a parte inferior para refletir a nova posição
-            this.sides.bottom = this.position.y + this.height;
         } else {
             // Se o player atinge o chão, a velocidade vertical é zerada
-            this.velocity.y = 0
+            this.velocity.y = 0;
         }
     }
 }
